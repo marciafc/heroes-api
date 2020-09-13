@@ -28,6 +28,19 @@ public class HeroesService {
     return Mono.justOrEmpty(heroesRepository.save(heroes));
   }
 
+  public Mono<Heroes> update(String id, Heroes heroes) {
+
+    return Mono.justOrEmpty(heroesRepository.findById(id))
+            .map(existingHero -> existingHero.toBuilder()
+                    .name(heroes.getName())
+                    .universe(heroes.getUniverse())
+                    .films(heroes.getFilms())
+                    .id(heroes.getId())
+                    .build())
+            .map(heroesRepository::save);
+
+  }
+
   public Mono<Boolean> deleteById(String id) {
 
     return Mono.justOrEmpty(heroesRepository.findById(id))

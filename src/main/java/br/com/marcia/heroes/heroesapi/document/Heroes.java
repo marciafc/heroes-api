@@ -3,6 +3,7 @@ package br.com.marcia.heroes.heroesapi.document;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import org.springframework.data.annotation.Id;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
@@ -10,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamoDBTable(tableName ="Heroes_Api_Table")

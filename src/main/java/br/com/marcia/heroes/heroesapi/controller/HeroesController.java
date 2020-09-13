@@ -43,6 +43,14 @@ public class HeroesController {
     return heroesService.save(heroes);
   }
 
+  @PutMapping("{id}")
+  public Mono<ResponseEntity<Heroes>> update(@PathVariable(value = "id") String id,
+                                             @RequestBody Heroes hero) {
+    return heroesService.update(id, hero)
+            .map(updateHero -> ResponseEntity.ok(updateHero))
+            .defaultIfEmpty(ResponseEntity.notFound().build());
+  }
+
   @DeleteMapping(HEROES_ENDPOINT_LOCAL + "/{id}")
   public Mono<ResponseEntity<Void>> deleteById(@PathVariable String id) {
     log.info("Deleting the hero with id {}", id);
