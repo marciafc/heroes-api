@@ -32,8 +32,8 @@ public class HeroesController {
   public Mono<ResponseEntity<Heroes>> findById(@PathVariable String id) {
     log.info("Requesting the hero with id {}", id);
     return heroesService.findByIdHero(id)
-      .map((item) -> new ResponseEntity<>(item, HttpStatus.OK))
-      .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+          .map(item -> ResponseEntity.ok(item))
+          .defaultIfEmpty(ResponseEntity.notFound().build());
   }
 
   @PostMapping(HEROES_ENDPOINT_LOCAL)
@@ -47,7 +47,9 @@ public class HeroesController {
   public Mono<ResponseEntity<Void>> deleteById(@PathVariable String id) {
     log.info("Deleting the hero with id {}", id);
     return heroesService.deleteById(id)
-            .map(removed -> removed ? ResponseEntity.noContent().build(): ResponseEntity.notFound().build());
+            .map(removed -> removed ?
+                    ResponseEntity.noContent().build():
+                    ResponseEntity.notFound().build());
   }
 
 }
