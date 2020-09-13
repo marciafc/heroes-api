@@ -7,7 +7,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<groupId>br.com.marcia.heroes</groupId>
@@ -18,9 +18,9 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<springdoc-openapi-webflux-ui.version>1.2.32</springdoc-openapi-webflux-ui.version>
-		<dynamodb.version>2.0.0-preview-9</dynamodb.version>
-		<spring-data-dynamodb.version>5.0.4</spring-data-dynamodb.version>
+		<openapi-webflux-ui.version>1.4.6</openapi-webflux-ui.version>
+		<dynamodb.version>2.14.15</dynamodb.version>
+		<spring-data-dynamodb.version>5.1.0</spring-data-dynamodb.version>
 		<junit.version>4.13</junit.version>
 	</properties>
 
@@ -34,12 +34,13 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-webflux-ui</artifactId>
-			<version>${springdoc-openapi-webflux-ui.version}</version>
+			<version>${openapi-webflux-ui.version}</version>
 		</dependency>
 
 		<dependency>
