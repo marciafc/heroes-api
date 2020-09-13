@@ -28,9 +28,14 @@ public class HeroesService {
     return Mono.justOrEmpty(heroesRepository.save(heroes));
   }
 
-  public Mono<Boolean> deleteByIdHero(String id) {
-    heroesRepository.deleteById(id);
-    return Mono.just(true);
+  public Mono<Boolean> deleteById(String id) {
+
+    return Mono.justOrEmpty(heroesRepository.findById(id))
+            .flatMap(heroes -> {
+              heroesRepository.delete(heroes);
+              return Mono.just(true);
+            })
+            .defaultIfEmpty(false);
   }
 
 }
